@@ -42,22 +42,22 @@ public class MovieService {
                 .orElseThrow(() -> new MovieNotFoundException(id));
     }
 
-    public String addRateToMovie(String movieId, double rate) {
-        return "New rate for movie with id:"
-                + movieId + " is: "
-                + movieRepository
+    public Movie addRateToMovie(String movieId, double rate) {
+        Movie movie = movieRepository
                 .findById(movieId)
-                .orElseThrow(()->new MovieNotFoundException(movieId))
-                .getRate()
+                .orElseThrow(() -> new MovieNotFoundException(movieId));
+
+        movie.getRate()
                 .addVote(rate);
+        return movieRepository.save(movie);
     }
 
-    public List<Movie> getMoviesByCategory(String category){
+    public List<Movie> getMoviesByCategory(String category) {
         return movieRepository.findMovieByCategory(Category.valueOf(category));
     }
 
-    public List<Movie> getSortedMoviesByRate(){
-        List<Movie> sortedMovies =movieRepository.findAll();
+    public List<Movie> getSortedMoviesByRate() {
+        List<Movie> sortedMovies = movieRepository.findAll();
         Collections.sort(sortedMovies);
         return sortedMovies;
     }

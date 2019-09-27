@@ -5,6 +5,8 @@ import edu.cursor.moviesratingreviewplatform.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
     private final ReviewRepository reviewRepository;
@@ -19,5 +21,11 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
+    public List<Review> getAllReviews(){
+        return reviewRepository.findAll();
+    }
 
+    public List<Review> getReviewsAboutMovieById(String movieId){
+        return reviewRepository.getReviewsByMovieId(movieId);
+    }
 }

@@ -37,8 +37,9 @@ public class UserMovieController {
                 .body(movieService.getSortedMoviesByRate());
     }
 
-    @GetMapping("{category}")
-    public ResponseEntity getMoviesByCategory(@RequestParam("category")String category){
+    @GetMapping("/sortedBy/{category}")
+    public ResponseEntity getMoviesByCategory(@PathVariable("category")String category){
+        System.out.println(category);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(movieService.getMoviesByCategory(category));
