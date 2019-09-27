@@ -26,7 +26,7 @@ public class AdminMovieController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity deleteTourById(@PathVariable("id") Long id) {
+    public ResponseEntity deleteTourById(@PathVariable("id") String id) {
         movieService.removeMovieById(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -35,7 +35,7 @@ public class AdminMovieController {
 
     @PutMapping("{id}")
     @ResponseBody
-    public ResponseEntity editMovieById(@PathVariable("id") Long id, @RequestBody Movie movie) {
+    public ResponseEntity editMovieById(@PathVariable("id") String id, @RequestBody Movie movie) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(movieService.editMovieById(id, movie));

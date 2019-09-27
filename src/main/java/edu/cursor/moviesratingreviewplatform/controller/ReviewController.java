@@ -18,7 +18,7 @@ public class ReviewController {
 
     @PutMapping("{movieId}")
     @ResponseBody
-    public ResponseEntity addReviewToMovieById(@PathVariable("movieId") Long movieId, @RequestBody Review review) {
+    public ResponseEntity addReviewToMovieById(@PathVariable("movieId") String movieId, @RequestBody Review review) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(reviewService.addReviewToMovie(movieId, review));

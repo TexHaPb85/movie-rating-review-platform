@@ -14,7 +14,7 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public Review addReviewToMovie(Long movieId, Review review){
+    public Review addReviewToMovie(String movieId, Review review){
         review.setMovieId(movieId);
         return reviewRepository.save(review);
     }

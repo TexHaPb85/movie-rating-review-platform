@@ -24,7 +24,7 @@ public class UserMovieController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity getMovie(@PathVariable("id")Long id){
+    public ResponseEntity getMovie(@PathVariable("id")String id){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(movieService.getMovieById(id));
@@ -45,7 +45,7 @@ public class UserMovieController {
     }
 
     @PatchMapping("{movieId}")
-    public ResponseEntity addRateToMovieById(@PathVariable("movieId")Long movieId, @RequestParam double rate){
+    public ResponseEntity addRateToMovieById(@PathVariable("movieId")String movieId, @RequestParam double rate){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(movieService.addRateToMovie(movieId,rate));

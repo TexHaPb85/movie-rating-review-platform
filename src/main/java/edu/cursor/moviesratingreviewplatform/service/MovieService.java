@@ -23,11 +23,11 @@ public class MovieService {
         return movieRepository.save(movie);
     }
 
-    public void removeMovieById(Long id) {
+    public void removeMovieById(String id) {
         movieRepository.deleteById(id);
     }
 
-    public Movie editMovieById(Long id, Movie movie) {
+    public Movie editMovieById(String id, Movie movie) {
         movie.setId(id);
         return movieRepository.save(movie);
     }
@@ -36,16 +36,20 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public Movie getMovieById(Long id) {
+    public Movie getMovieById(String id) {
         return movieRepository
                 .findById(id)
                 .orElseThrow(() -> new MovieNotFoundException(id));
     }
 
-    public String addRateToMovie(Long movieId, double rate) {
+    public String addRateToMovie(String movieId, double rate) {
         return "New rate for movie with id:"
                 + movieId + " is: "
-                + movieRepository.findById(movieId).get().getRate().addVote(rate);
+                + movieRepository
+                .findById(movieId)
+                .orElseThrow(()->new MovieNotFoundException(movieId))
+                .getRate()
+                .addVote(rate);
     }
 
     public List<Movie> getMoviesByCategory(String category){
